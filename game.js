@@ -11,6 +11,7 @@ const JUMP_FORCE = 360;
 const BIG_JUMP_FORCE = 550;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
 let isJumping = true;
+const FALL_DEATH = 400;
 
 loadRoot('https://i.imgur.com/')
 loadSprite('coin', 'wbKxhcd.png')
@@ -19,7 +20,7 @@ loadSprite('brick', 'pogC9x5.png')
 loadSprite('block', 'M6rwarW.png')
 loadSprite('mario', 'Wb1qfhK.png')
 loadSprite('mushroom', '0wMd92p.png')
-loadSprite('surprise', 'gesQ1KP.png')
+loadSprite('surprise', 'gesQ1KP.png') 
 loadSprite('unboxed', 'bdrLpi6.png')
 loadSprite('pipe-top-left', 'ReTPiWY.png')
 loadSprite('pipe-top-right', 'hj2GK4n.png')
@@ -147,6 +148,13 @@ scene("game", ({ score }) => {
     if (isJumping) {
       destroy(d)
     } else {
+      go('lose', { score: scoreLabel.value })
+    }
+  })
+
+  player.action(() => {
+    camPos(player.pos)
+    if(player.pos.y >= FALL_DEATH) {
       go('lose', { score: scoreLabel.value })
     }
   })
