@@ -37,7 +37,7 @@ loadSprite('blue-surprise', 'RMqCc1G.png')
 
 scene("game", ({ level, score }) => {
   layers(['bg', 'obj', 'ui'], 'obj')
-  
+
   const maps = [
     [
       '                                      ',
@@ -99,7 +99,7 @@ scene("game", ({ level, score }) => {
     'x': [sprite('blue-steel'), solid(), scale(0.5)],
   }
 
-  const gameLevel = addLevel(maps[level], levelCfg)
+  const gameLevel = addLevel(maps[level], levelCfg, CURRENT_JUMP_FORCE = 360)
 
   const scoreLabel = add([
     text(score),
